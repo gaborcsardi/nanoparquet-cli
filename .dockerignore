@@ -1,0 +1,9 @@
+/.dockerignore
+/.devcontainer
+/.git
+/dev-lib
+/.github
+/Dockerfile
+/docker-compose.yml
+/.gitignore
+/nanoparquet.cmd

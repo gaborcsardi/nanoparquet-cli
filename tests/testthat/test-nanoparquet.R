@@ -50,9 +50,3 @@ test_that("export", {
   ))
   expect_snapshot(writeLines(readLines(tmp)))
 })
-
-test_that("dq", {
-  expect_snapshot({
-    dq(letters[1:5])
-  })
-})

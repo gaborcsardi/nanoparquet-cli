@@ -22,9 +22,11 @@ Options:
 }"
 
 nanoparquet_cli_main <- function(args) {
-  opts <- docopt::docopt(doc, args = args)
-  # --help is handled automatically
-  if (isTRUE(opts[["version"]])) {
+  loadNamespace("pillar")
+  opts <- docopt::docopt(doc, args = args, help = FALSE)
+  if (isTRUE(opts[["--help"]])) {
+    help()
+  } else if (isTRUE(opts[["version"]])) {
     version()
   } else if (isTRUE(opts[["info"]])) {
     info(opts)
@@ -35,8 +37,11 @@ nanoparquet_cli_main <- function(args) {
   }
 }
 
-dq <- function(x) {
-  paste0('"', x, '"')
+# handle here, because doctopt calls quit(), which is not great in tests
+help <- function() {
+  helptxt <- gsub("^\\s*|\\s*$", "", doc, perl = TRUE)
+  cat(helptxt, "\n")
+  stop(call. = FALSE)
 }
 
 version <- function() {

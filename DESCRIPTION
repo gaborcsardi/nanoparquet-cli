@@ -3,7 +3,8 @@ Version: 0.0.0.9000
 License: MIT
 Imports:
     docopt,
-    nanoparquet
+    nanoparquet,
+    pillar
 Remotes:
     r-lib/nanoparquet
 Suggests:
