@@ -48,8 +48,13 @@ version <- function() {
   message("nanoparquet ", packageVersion("nanoparquet"))
 }
 
+as_path <- function(x) {
+  if (is.null(x)) return(x)
+  gsub("\\", "/", x, fixed = TRUE)
+}
+
 info <- function(opts) {
-  path <- opts[["<parquet-file>"]]
+  path <- as_path(opts[["<parquet-file>"]])
   info <- nanoparquet::read_parquet_info(path)
   old <- options(width = 10000)
   on.exit(options(old), add = TRUE)
@@ -57,7 +62,7 @@ info <- function(opts) {
 }
 
 schema <- function(opts) {
-  path <- opts[["<parquet-file>"]]
+  path <- as_path(opts[["<parquet-file>"]])
   schema <- nanoparquet::read_parquet_schema(path)
   old <- options(width = 10000)
   on.exit(options(old), add = TRUE)
@@ -65,8 +70,8 @@ schema <- function(opts) {
 }
 
 export <- function(opts) {
-  ipath <- opts[["<parquet-file>"]]
-  opath <- opts[["<csv-file>"]]
+  ipath <- as_path(opts[["<parquet-file>"]])
+  opath <- as_path(opts[["<csv-file>"]])
   opath <- opath %||% ""
   df <- nanoparquet::read_parquet(ipath)
   write.csv(df, opath, row.names = FALSE)
