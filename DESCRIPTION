@@ -1,0 +1,12 @@
+Package: nanoparquet.cli
+Version: 0.0.0.9000
+License: MIT
+Imports:
+    docopt,
+    nanoparquet
+Remotes:
+    r-lib/nanoparquet
+Suggests:
+    testthat
+RoxygenNote: 7.3.2
+Config/testthat/edition: 3
